@@ -1,5 +1,7 @@
 import csv
 
+from itertools import combinations
+
 
 def load_data():
     data_shares = []
@@ -15,54 +17,36 @@ def load_data():
     return data_shares
 
 
-def generate_combinations(shares, budget):
-    """ final result list combinations_with_max_profit looks like:
-    [[share[i], share[i+1], share[i+2], total_price, average_profit]
-    """
+def generate_combinations(data_of_shares):
+    all_possible_combinations = []
 
-    combinations = []
-    generate_combinations_recursive(shares, budget, [], combinations)
-
-    for combi in combinations:
-        profit = 0
-        total_price = 0
-        for share in combi:
-            profit += float(share[2])
-            total_price += int(share[1])
-
-        combi.append(total_price)
-        average_profit = round(float(profit / len(combi[:-1])), 2)
-        combi.append(average_profit)
-
-    combinations_with_max_profit = max(combinations, key=lambda x: x[-1])
-
-    return combinations_with_max_profit
+    for i in range(1, len(data_of_shares) + 1):
+        combies = combinations(data_of_shares, i)
+        all_possible_combinations.extend(combies)
+        print('here', all_possible_combinations)
 
 
-def generate_combinations_recursive(shares, budget, current_combination, combinations):
-    if budget < 0:
-        return combinations
+def bruteforce(data_of_shares, budget):
+    selected_shares = []
+    best_profit = 0
 
-    if budget == 0:
-        combinations.append(list(current_combination))
-        return combinations
+    for i in range(0, len(data_of_shares)+1):
+        print('i', i)
+        for data_list in data_of_shares:
+            print('data_list', data_list)
+            price = int(data_list[1])
+            if budget - price <= 0:
+                break
+            budget -= price
+            profit = float(data_list[2])
+            selected_shares.append(profit)
 
-    if not shares:
-        return combinations
+        average_rate = round((sum(selected_shares) / len(selected_shares) if selected_shares else 0), 2)
 
-    share = shares[0]
-    # check if price is smaller/egal to budget
-    if int(share[1]) <= budget:
-        current_combination.append(share)
-        combinations = generate_combinations_recursive(
-            shares[1:], budget - int(share[1]), current_combination, combinations
-        )
-        current_combination.pop()
-
-    combinations = generate_combinations_recursive(shares[1:], budget, current_combination, combinations)
-    return combinations
+    print('length: ', len(selected_shares), 'budget: ', budget, 'average: ', average_rate)
 
 
-data_shares = load_data()
-generate_combinations = generate_combinations(data_shares, budget=500)
-print('end result', generate_combinations)
+# shares = load_data()
+# generate_combinations(shares)
+
+# bruteforce(shares, budget=500)

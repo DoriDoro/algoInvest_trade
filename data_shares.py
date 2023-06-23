@@ -1,6 +1,6 @@
 import csv
 
-data_share = [
+data_shares = [
     ["Actions-Name", "Costs per share (in EUR)", "Profit (after 2 years)"],
     ["Action-1", 20, 0.25],
     ["Action-2", 30, 3],
@@ -28,7 +28,7 @@ filename = "data_shares.csv"
 
 with open(filename, "w", newline="") as file:
     writer = csv.writer(file)
-    for row in data_share:
+    for row in data_shares:
         writer.writerow(row)
 
 print("CSV file created successfully!")
