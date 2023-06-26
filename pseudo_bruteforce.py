@@ -19,6 +19,7 @@ def load_pseudo_data():
 
 def generate_all_combinations(data_of_shares):
     """ generates all possible combinations with `itertools combinations` """
+
     all_possible_combinations = []
 
     for combo in permutations(data_of_shares, len(data_of_shares)):
@@ -29,6 +30,7 @@ def generate_all_combinations(data_of_shares):
 
 def combinations_budget(possible_combo):
     """ uses all possible combinations to check them and include the budget, budget = 150 """
+
     budget_combinations = []
 
     for combination in possible_combo:
@@ -45,11 +47,12 @@ def combinations_budget(possible_combo):
     return budget_combinations
 
 
-def check_profit(budget_combo):
+def calculate_profit(budget_combo):
     """ amount = (profit * price of the share) + (prifit * price of share) / length
     create profit_combinations like:
     [['Action-4', '70', '14'], ['Action-3', '50', '7.5'], ['Action-2', '30', '3'], average_profit]
     """
+
     profit_combinations = []
 
     for combination in budget_combo:
@@ -66,29 +69,49 @@ def check_profit(budget_combo):
     return profit_combinations
 
 
-def bruteforce(data_of_shares, budget):
-    selected_shares = []
-    best_profit = 0
+def check_duplicate_profit(profit_combo):
+    """ check for same value of the profit inside the combinations
+     get rid of the duplicates
+     """
 
-    for i in range(0, len(data_of_shares)+1):
-        print('i', i)
-        for data_list in data_of_shares:
-            print('data_list', data_list)
-            price = int(data_list[1])
-            if budget - price <= 0:
+    duplicate_free_profit_combo = []
+    double_profit = []
+
+    for combo in profit_combo:
+        profit = combo[3]
+        found_duplicat = False
+
+        for double in double_profit:
+            if profit == double:
+                found_duplicat = True
                 break
-            budget -= price
-            profit = float(data_list[2])
-            selected_shares.append(profit)
 
-        average_rate = round((sum(selected_shares) / len(selected_shares) if selected_shares else 0), 2)
+        if not found_duplicat:
+            double_profit.append(profit)
+            duplicate_free_profit_combo.append(combo)
 
-    print('length: ', len(selected_shares), 'budget: ', budget, 'average: ', average_rate)
+    return duplicate_free_profit_combo
+
+
+def bruteforce(pur_profit):
+    """ get the most profitable share combination """
+
+    highest_combo = ""
+    highest_profit = 0.0
+
+    for combo in pur_profit:
+        profit = float(combo[3])
+
+        if profit > highest_profit:
+            highest_profit = profit
+            highest_combo = combo
+
+    return highest_combo
 
 
 pseudo_shares = load_pseudo_data()
 generate_combinations = generate_all_combinations(pseudo_shares)
 combinations_budget = combinations_budget(generate_combinations)
-check_profit = check_profit(combinations_budget)
-
-# bruteforce(shares, budget=500)
+calculate_profit = calculate_profit(combinations_budget)
+check_double_profit = check_duplicate_profit(calculate_profit)
+bruteforce(check_double_profit)
