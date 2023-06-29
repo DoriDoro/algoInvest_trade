@@ -4,8 +4,8 @@ from itertools import permutations
 
 
 def main():
-    pseudo_shares = load_pseudo_data()
-    generate_combinations = generate_all_combinations(pseudo_shares)
+    shares = load_data()
+    generate_combinations = generate_all_combinations(shares)
     combo_budget = combinations_budget(generate_combinations)
     cal_profit = calculate_profit(combo_budget)
     check_double_profit = check_duplicate_profit(cal_profit)
@@ -13,18 +13,22 @@ def main():
     print_results(result)
 
 
-def load_pseudo_data():
-    pseudo_data_shares = []
+def load_data():
+    """ load the share data from a csv file,
+    with all 20 shares this bruteforce is not working, KILLED the process
+    use: pseudo_shares.csv instead for testing
+    """
+    data_shares = []
 
-    with open('pseudo_data_shares.csv', 'r') as file:
+    with open('data_shares.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
-            pseudo_data_shares.append(row)
+            data_shares.append(row)
 
     # remove first list with header
-    pseudo_data_shares = pseudo_data_shares[1:]
+    data_shares = data_shares[1:]
 
-    return pseudo_data_shares
+    return data_shares
 
 
 def generate_all_combinations(data_of_shares):
@@ -39,13 +43,13 @@ def generate_all_combinations(data_of_shares):
 
 
 def combinations_budget(possible_combo):
-    """ uses all possible combinations to check them and include the budget, budget = 150 """
+    """ uses all possible combinations to check them and include the budget, budget = 500 """
 
     budget_combinations = []
 
     for combination in possible_combo:
         current_combinations = []
-        budget = 150
+        budget = 500
 
         for combo in combination:
             if budget - int(combo[1]) >= 0:
@@ -106,7 +110,6 @@ def check_duplicate_profit(profit_combo):
 def bruteforce(pur_profit):
     """ get the most profitable share combination """
 
-    print(pur_profit)
     highest_combo = ""
     highest_profit = 0.0
 
@@ -122,6 +125,7 @@ def bruteforce(pur_profit):
 
 
 def print_results(combo):
+    """ print the final result of the found share combination """
     total_profit = combo.pop()
 
     print("The share-combination-result of the bruteforce algorythm: ", end='\n\n')
