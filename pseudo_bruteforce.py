@@ -3,6 +3,16 @@ import csv
 from itertools import permutations
 
 
+def main():
+    pseudo_shares = load_pseudo_data()
+    generate_combinations = generate_all_combinations(pseudo_shares)
+    combo_budget = combinations_budget(generate_combinations)
+    cal_profit = calculate_profit(combo_budget)
+    check_double_profit = check_duplicate_profit(cal_profit)
+    result = bruteforce(check_double_profit)
+    print_results(result)
+
+
 def load_pseudo_data():
     pseudo_data_shares = []
 
@@ -109,9 +119,18 @@ def bruteforce(pur_profit):
     return highest_combo
 
 
-pseudo_shares = load_pseudo_data()
-generate_combinations = generate_all_combinations(pseudo_shares)
-combinations_budget = combinations_budget(generate_combinations)
-calculate_profit = calculate_profit(combinations_budget)
-check_double_profit = check_duplicate_profit(calculate_profit)
-bruteforce(check_double_profit)
+def print_results(combo):
+    total_profit = combo.pop()
+
+    print("The share-combination-result of the bruteforce algorythm: ", end='\n\n')
+
+    for i, share in enumerate(combo):
+        print(f"  {i+1}. share-name: {share[0]}")
+        print(f"   buying price: {share[1]} €")
+        print(f"   profit after 2 years: {share[2]} €", end='\n\n')
+
+    print(f"  The total profit of this share-combination is: {total_profit} €", end='\n\n')
+
+
+if __name__ == "__main__":
+    main()
