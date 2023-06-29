@@ -3,7 +3,7 @@ import csv
 from itertools import permutations
 
 
-def main():
+def pseudo_main():
     pseudo_shares = load_pseudo_data()
     generate_combinations = generate_all_combinations(pseudo_shares)
     combo_budget = combinations_budget(generate_combinations)
@@ -106,7 +106,6 @@ def check_duplicate_profit(profit_combo):
 def bruteforce(pur_profit):
     """ get the most profitable share combination """
 
-    print(pur_profit)
     highest_combo = ""
     highest_profit = 0.0
 
@@ -134,4 +133,5 @@ def print_results(combo):
     print(f"  The total profit of this share-combination is: {total_profit} €", end='\n\n')
 
 
-main()
+if __name__ == '__menu__':
+    pseudo_main()

@@ -3,7 +3,7 @@ import csv
 from itertools import combinations
 
 
-def main():
+def combinations_main():
     shares = load_data()
     generate_combinations = generate_all_combinations(shares)
     combo_budget = combinations_budget(generate_combinations)
@@ -114,4 +114,5 @@ def print_results(combo):
     print(f"  The total profit of this share-combination is: {total_profit} €", end='\n\n')
 
 
-main()
+if __name__ == '__menu__':
+    combinations_main()

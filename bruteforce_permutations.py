@@ -3,7 +3,7 @@ import csv
 from itertools import permutations
 
 
-def main():
+def permutations_main():
     shares = load_data()
     generate_combinations = generate_all_combinations(shares)
     combo_budget = combinations_budget(generate_combinations)
@@ -20,7 +20,7 @@ def load_data():
     """
     data_shares = []
 
-    with open('data_shares.csv', 'r') as file:
+    with open('pseudo_data_shares.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             data_shares.append(row)
@@ -138,4 +138,5 @@ def print_results(combo):
     print(f"  The total profit of this share-combination is: {total_profit} €", end='\n\n')
 
 
-main()
+if __name__ == '__menu__':
+    permutations_main()
