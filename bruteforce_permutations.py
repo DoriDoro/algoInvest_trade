@@ -32,7 +32,7 @@ def load_data():
 
 
 def generate_all_combinations(data_of_shares):
-    """ generates all possible combinations with `itertools permutations` """
+    """ generates all possible combinations with `itertools.permutations` """
 
     all_possible_combinations = []
 
@@ -138,5 +138,4 @@ def print_results(combo):
     print(f"  The total profit of this share-combination is: {total_profit} €", end='\n\n')
 
 
-if __name__ == "__main__":
-    main()
+main()

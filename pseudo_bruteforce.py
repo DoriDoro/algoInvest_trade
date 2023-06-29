@@ -134,5 +134,4 @@ def print_results(combo):
     print(f"  The total profit of this share-combination is: {total_profit} €", end='\n\n')
 
 
-if __name__ == "__main__":
-    main()
+main()
