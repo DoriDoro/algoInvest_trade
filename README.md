@@ -4,7 +4,7 @@
 Project 7 OpenClassrooms Path - AlgoInvest&amp;Trade -- develop an algorithm to solve a problem
 
 
-## 1st part - bruteforce algorythm:
+## 1st part - bruteforce algorithm:
 We need you to design an algorithm that will maximise the profit made by our clients after two years 
 of investment. Your algorithm must suggest a list of the most profitable stocks that we should buy 
 to maximise a client's profit after two years.
