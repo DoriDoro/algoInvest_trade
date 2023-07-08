@@ -1,12 +1,11 @@
 import csv
+import sys
 
 from itertools import combinations
 from itertools import permutations
 from time import time
 
 start_time = time()
-
-# TODO: try except blocks
 
 
 def load_data(name_of_file):
@@ -96,7 +95,7 @@ def calculate_profit(budget_combo):
 
 
 def check_duplicate_profit(profit_combo):
-    """ check for same value of the profit inside the combinations
+    """ check for same value of the profit inside the itertools.permutations combinations
      get rid of the duplicates
      """
 
