@@ -28,5 +28,6 @@ open terminal
 
 ## Visualisation of the Project:
 1. Start the program with `python3 main.py`
-2. ![Main Menu](/images/MainMenu.png)
+2. Main Menu
+![Main Menu](/images/MainMenu.png)
 3. 
