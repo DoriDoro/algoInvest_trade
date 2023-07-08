@@ -10,13 +10,11 @@ start_time = time()
 
 
 def load_data(name_of_file):
-    """ load the shares data from a csv file with 20 shares
-    # TODO load all two different data_shares
-    """
+    """ load the shares data from a csv file with 20 shares """
 
     data_shares = []
 
-    with open(f'{name_of_file}.csv', 'r') as file:
+    with open(f'data/{name_of_file}.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             data_shares.append(row)
