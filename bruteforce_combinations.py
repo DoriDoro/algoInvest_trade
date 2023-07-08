@@ -1,6 +1,5 @@
 from bruteforce_utils import (
     load_data,
-    load_pseudo_data,
     generate_all_combinations_combinations,
     combinations_budget,
     calculate_profit,
@@ -10,12 +9,11 @@ from bruteforce_utils import (
 
 
 def bruteforce_combinations_main():
-    amount_of_shares = 0
 
     while True:
         print(" ---------------------------------------------------------------")
         print(" ** choose the data ** ", end='\n\n')
-        print("  1. pseudo_share_date with 4 shares")
+        print("  1. share_data with 4 shares")
         print("  2. share_data with 20 shares")
         print("  3. go back to Main Menu", end='\n\n')
 
@@ -23,12 +21,14 @@ def bruteforce_combinations_main():
         print()
 
         if choice == 1:
-            shares = load_pseudo_data()
-            print("  You have chosen the pseudo_share_data with 4 shares.", end='\n\n')
+            pseudo = 'pseudo_data_shares'
+            shares = load_data(pseudo)
+            print("  You have chosen the share_data with 4 shares.", end='\n\n')
             amount_of_shares = shares[-1]
             break
         elif choice == 2:
-            shares = load_data()
+            all_shares = 'data_shares'
+            shares = load_data(all_shares)
             print("  You have chosen the share_data with 20 shares.", end='\n\n')
             amount_of_shares = shares[-1]
             break

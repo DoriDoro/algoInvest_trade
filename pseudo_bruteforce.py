@@ -1,5 +1,5 @@
 from bruteforce_utils import (
-    load_pseudo_data,
+    load_data,
     generate_all_combinations_permutations,
     combinations_budget,
     calculate_profit,
@@ -10,7 +10,7 @@ from bruteforce_utils import (
 
 
 def pseudo_bruteforce_main():
-    pseudo_shares = load_pseudo_data()
+    pseudo_shares = load_data('pseudo_data_shares')
     generate_combinations = generate_all_combinations_permutations(pseudo_shares)
     combo_budget = combinations_budget(generate_combinations, budget=150)
     cal_profit = calculate_profit(combo_budget)

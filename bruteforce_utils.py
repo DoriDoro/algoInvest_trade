@@ -6,13 +6,17 @@ from time import time
 
 start_time = time()
 
+# TODO: try except blocks
 
-def load_data():
-    """ load the shares data from a csv file with 20 shares """
+
+def load_data(name_of_file):
+    """ load the shares data from a csv file with 20 shares
+    # TODO load all two different data_shares
+    """
 
     data_shares = []
 
-    with open('data_shares.csv', 'r') as file:
+    with open(f'{name_of_file}.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             data_shares.append(row)
@@ -23,24 +27,6 @@ def load_data():
     data_shares.append(length_data)
 
     return data_shares
-
-
-def load_pseudo_data():
-    """ load the shares data from a csv file with 4 shares """
-
-    pseudo_data_shares = []
-
-    with open('pseudo_data_shares.csv', 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            pseudo_data_shares.append(row)
-
-    # remove first list with header
-    pseudo_data_shares = pseudo_data_shares[1:]
-    length_data = len(pseudo_data_shares)
-    pseudo_data_shares.append(length_data)
-
-    return pseudo_data_shares
 
 
 def generate_all_combinations_combinations(data_of_shares):
