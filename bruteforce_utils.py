@@ -4,8 +4,6 @@ from itertools import combinations
 from itertools import permutations
 from time import time
 
-start_time = time()
-
 
 def load_data(name_of_file):
     """ load the shares data from a csv file with 20 shares """
@@ -19,6 +17,7 @@ def load_data(name_of_file):
 
     # remove first list with header
     data_shares = data_shares[1:]
+    data_shares = [(a, int(b), float(c)) for a, b, c in data_shares]
 
     return data_shares
 
@@ -58,8 +57,8 @@ def combinations_budget(possible_combo, budget):
         remaining_budget = budget
 
         for combo in combination:
-            if remaining_budget - int(combo[1]) >= 0:
-                remaining_budget -= int(combo[1])
+            if remaining_budget - combo[1] >= 0:
+                remaining_budget -= combo[1]
                 current_combinations.append(combo)
 
         budget_combinations.append(current_combinations)
@@ -68,7 +67,7 @@ def combinations_budget(possible_combo, budget):
 
 
 def calculate_profit(budget_combo):
-    """ amount = (profit * price of the share) + (profit * price of share) / length """
+    """ calculate the profit of all combinations """
 
     profit_combinations = []
 
@@ -76,8 +75,8 @@ def calculate_profit(budget_combo):
         result_profit = 0
 
         for i in range(0, len(combination)):
-            price = float(combination[i][1])
-            profit = float(combination[i][2])
+            price = combination[i][1]
+            profit = combination[i][2]
             result_profit += price * profit
 
         total_profit = round(result_profit / 100, 2)
@@ -127,7 +126,7 @@ def bruteforce(budget_combo, profit_combo):
     return highest_combo
 
 
-def print_results(combination, amount_of_shares, budget):
+def print_results(combination, amount_of_shares, budget, start_time, name_of_file):
     """ print the results of the bruteforce algorithm. """
 
     costs = 0
@@ -135,11 +134,13 @@ def print_results(combination, amount_of_shares, budget):
     print(" ---------------------------------------------------------------")
     print(" ** RESULTS ** ", end='\n\n')
     print(" The share-combination-result of the bruteforce algorythm: ", end='\n\n')
+
+    print(f"  You have chosen: {name_of_file}.py")
     print(f"  The amount of shares are: {amount_of_shares}.")
     print(f"  The buying budget is: {budget} €.", end='\n\n')
 
     for i, share in enumerate(combination['combo']):
-        costs += int(share[1])
+        costs += share[1]
         print(f"   {i+1}. share-name: {share[0]}.")
         print(f"    buying price: {share[1]} €.")
         print(f"    profit after 2 years: {share[2]} %.", end='\n\n')

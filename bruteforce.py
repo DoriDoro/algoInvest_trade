@@ -1,3 +1,5 @@
+from time import time
+
 from bruteforce_utils import (
     load_data,
     generate_all_combinations,
@@ -8,7 +10,8 @@ from bruteforce_utils import (
 )
 
 
-def bruteforce_main():
+def bruteforce_main(name_of_file):
+    start_time = time()
 
     while True:
         print(" ---------------------------------------------------------------")
@@ -46,7 +49,7 @@ def bruteforce_main():
     combo_budget = combinations_budget(generate_combinations, budget)
     cal_profit = calculate_profit(combo_budget)
     result = bruteforce(combo_budget, cal_profit)
-    print_results(result, amount_of_shares, budget)
+    print_results(result, amount_of_shares, budget, start_time, name_of_file)
 
 
 if __name__ == '__menu__':
