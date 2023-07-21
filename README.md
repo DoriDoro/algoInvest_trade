@@ -29,10 +29,10 @@ open terminal
 ## Visualisation of the Project:
 1. Start the program with `python3 main.py`
 2. The Main Menu to choose the file:
-![Main Menu](/images/MainMenu.png)
+![Main Menu](/images_README/MainMenu.png)
 3. Next step: choose the data of shares
-![Data](/images/ChooseData.png)
+![Data](/images_README/ChooseData.png)
 4. Third step: choose the budget
-![Budget](/images/ChooseBudget.png)
+![Budget](/images_README/ChooseBudget.png)
 5. Display the results:
-![Results](/images/Results.png)
+![Results](/images_README/Results.png)
