@@ -18,6 +18,7 @@ def load_data(name_of_file):
     # remove first list with header
     data_shares = data_shares[1:]
     data_shares = [(a, float(b), float(c)) for a, b, c in data_shares]
+    print(data_shares)
 
     return data_shares
 

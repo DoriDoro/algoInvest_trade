@@ -32,13 +32,12 @@ def optimization_main(name_of_file):
             break
         elif choice == 3:
             share_data = pd.read_csv('data/dataset1_P7.csv')
-            print("  You have chosen the share_data with 1000 shares.", end='\n\n')
+            print("  You have chosen the share_data with about 1000 shares.", end='\n\n')
             amount_of_shares = len(share_data)
             break
         elif choice == 4:
-            all_shares = 'dataset2_P7'
-            share_data = load_data(all_shares)
-            print("  You have chosen the share_data with 1000 shares.", end='\n\n')
+            share_data = pd.read_csv('data/dataset2_P7.csv')
+            print("  You have chosen the share_data with about 1000 shares.", end='\n\n')
             amount_of_shares = len(share_data)
             break
         elif choice == 5:
@@ -54,17 +53,14 @@ def optimization_main(name_of_file):
     if amount_of_shares > 21:
         start_time = time()
 
-        # Check for duplicates
-        duplicates = share_data[share_data.duplicated()]
+        # Remove duplicates from shared_data
+        share_data.drop_duplicates(inplace=True)
 
-        if not duplicates.empty:
-            print("Duplicate found: ", duplicates)
+        # Remove rows with 0 and negative values
+        share_data = share_data[~(share_data['price'] <= 0)]
 
-        # Check for row with 0.0 and negative values
-        zero_or_negative_values = share_data[(share_data['price'] <= 0)]
-
-        if not zero_or_negative_values.empty:
-            print("Rows found with 0.0 or negative values: ", zero_or_negative_values)
+        # Convert the pandas DataFrame beck to a list with tuples
+        share_data = [tuple(data) for data in share_data.to_numpy()]
 
     else:
         start_time = time()
@@ -92,7 +88,6 @@ def optimization_main(name_of_file):
     combination['total_profit'] = total_profit
 
     print_results(combination, amount_of_shares, budget, start_time, name_of_file)
-
 
 
 if __name__ == '__menu__':
