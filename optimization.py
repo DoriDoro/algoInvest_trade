@@ -11,8 +11,8 @@ def optimization_main(name_of_file):
         print(" ** choose the data ** ", end='\n\n')
         print("  1. share_data with 4 shares")
         print("  2. share_data with 20 shares")
-        print("  3. dataset 1 with 1000 shares")
-        print("  4. dataset 2 with 1000 shares")
+        print("  3. dataset 1 with about 1000 shares")
+        print("  4. dataset 2 with about 1000 shares")
         print("  5. go back to Main Menu", end='\n\n')
 
         choice = int(input("  Please enter your choice: "))
@@ -71,6 +71,7 @@ def optimization_main(name_of_file):
     cost = budget
     shares_list = []
     result_profit = 0
+
     combination = {}
 
     for a, b, c in data_sorted:
