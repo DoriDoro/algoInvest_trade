@@ -11,7 +11,6 @@ from bruteforce_utils import (
 
 
 def bruteforce_main(name_of_file):
-    start_time = time()
 
     while True:
         print(" ---------------------------------------------------------------")
@@ -44,6 +43,8 @@ def bruteforce_main(name_of_file):
     print(" ** choose the budget ** ", end='\n\n')
     budget = int(input("  Please enter the budget: "))
     print()
+
+    start_time = time()
 
     generate_combinations = generate_all_combinations(shares)
     combo_budget = combinations_budget(generate_combinations, budget)
