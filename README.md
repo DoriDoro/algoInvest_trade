@@ -20,11 +20,11 @@ The programme must provide an answer in less than one second.
 
 ## Installation: 
 open terminal
-```
- git clone https://github.com/DoriDoro/algoInvest_trade.git
- cd alogInvest_trade
- python3 main.py
- ```
+
+1. `git clone https://github.com/DoriDoro/algoInvest_trade.git`
+2. `cd alogInvest_trade`
+3. `python3 main.py`
+
 
 ### Skills:
 - Deconstructing a problem
@@ -33,11 +33,11 @@ open terminal
 
 ## Visualisation of the Project:
 1. Start the program with `python3 main.py`
-2. The Main Menu to choose the file:
+2. The Main Menu to choose the file: <br>
 ![Main Menu](/images_README/MainMenu.png)
-3. Next step: choose the data of shares
+3. Next step: choose the data of shares <br>
 ![Data](/images_README/ChooseData.png)
-4. Third step: choose the budget
+4. Third step: choose the budget <br>
 ![Budget](/images_README/ChooseBudget.png)
-5. Display the results:
+5. Display the results: <br>
 ![Results](/images_README/Results.png)
