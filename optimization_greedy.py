@@ -62,6 +62,7 @@ def optimization_main(name_of_file):
 
         # Convert the pandas DataFrame beck to a list with tuples
         share_data = [tuple(data) for data in share_data.to_numpy()]
+        amount_of_shares = len(share_data)
 
     # sort loaded data of shares by highest profit first:
     data_sorted = sorted(share_data, key=lambda x: x[2], reverse=True)
