@@ -67,8 +67,9 @@ def combinations_budget(possible_combo, budget):
 
 
 def calculate_profit(budget_combo):
-    """ calculate the profit of all combinations """
-    """ (price * profit) + (price * profit) """
+    """ calculate the profit of all combinations
+    (price * profit) + (price * profit)
+    """
 
     profit_combinations = []
 

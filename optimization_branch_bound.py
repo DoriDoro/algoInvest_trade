@@ -6,6 +6,7 @@ from bruteforce_utils import load_data, print_results
 
 
 def optimization_bb_main(name_of_file):
+    """ use a branch and bound algorithm to create the most profitable combination of shares """
 
     while True:
         print(" ---------------------------------------------------------------")
@@ -16,7 +17,7 @@ def optimization_bb_main(name_of_file):
         print("  4. dataset 2 with about 1000 shares")
         print("  5. go back to Main Menu", end='\n\n')
 
-        choice = int(input("  Please enter your choice: "))
+        choice = int(input("  Please enter your choice of the data: "))
         print()
 
         if choice == 1:

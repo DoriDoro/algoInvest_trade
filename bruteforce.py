@@ -22,7 +22,7 @@ def bruteforce_main(name_of_file):
         print("  4. dataset 2 with about 1000 shares")
         print("  5. go back to Main Menu", end='\n\n')
 
-        choice = int(input("  Please enter your choice: "))
+        choice = int(input("  Please enter your choice of the data: "))
         print()
 
         if choice == 1:
@@ -55,9 +55,9 @@ def bruteforce_main(name_of_file):
     budget = int(input("  Please enter the budget: "))
     print()
 
-    if amount_of_shares > 21:
-        start_time = time()
+    start_time = time()
 
+    if amount_of_shares > 21:
         # Remove duplicates from shared_data
         share_data.drop_duplicates(inplace=True)
 
@@ -66,9 +66,6 @@ def bruteforce_main(name_of_file):
 
         # Convert the pandas DataFrame beck to a list with tuples
         share_data = [tuple(data) for data in share_data.to_numpy()]
-
-    else:
-        start_time = time()
 
     generate_combinations = generate_all_combinations(share_data)
     combo_budget = combinations_budget(generate_combinations, budget)

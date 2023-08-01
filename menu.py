@@ -13,7 +13,7 @@ def run_menu():
         print("   3. optimization_branch_bound.py")
         print("   4. Quit program", end='\n\n')
 
-        choice = int(input("  Please enter your choice: "))
+        choice = int(input("  Please enter your choice of the file: "))
         print()
 
         if choice == 1:
