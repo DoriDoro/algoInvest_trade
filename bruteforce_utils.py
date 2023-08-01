@@ -68,6 +68,7 @@ def combinations_budget(possible_combo, budget):
 
 def calculate_profit(budget_combo):
     """ calculate the profit of all combinations """
+    """ (price * profit) + (price * profit) """
 
     profit_combinations = []
 
@@ -145,7 +146,7 @@ def print_results(combination, amount_of_shares, budget, start_time, name_of_fil
         print(f"    buying price: {share[1]} €.")
         print(f"    profit after 2 years: {share[2]} %.", end='\n\n')
 
-    print(f"  The costs for the shares are: {costs} €.")
+    print(f"  The costs for the shares are: {round(costs, 2)} €.")
     print(f"  The total profit of this share-combination is: "
           f"{combination['total_profit']} %.", end='\n\n')
     print(f"  The process needed {round((time() - start_time), 6)} seconds.", end='\n\n')
