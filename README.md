@@ -15,7 +15,9 @@ We have the following conditions:
 
 
 ## 2nd part - optimization of the bruteforce algorithm:
-The programme must provide an answer in less than one second.
+The programme must provide an answer in less than one second. I have created two algorithms, one
+greedy algorithm and a branch and bound algorithm.
+Add share datasets of 1000 shares, cleaned the datasets before usage with pandas library. 
 
 
 ## Installation: 
