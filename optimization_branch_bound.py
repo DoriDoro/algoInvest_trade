@@ -71,20 +71,9 @@ def optimization_bb_main(name_of_file):
     cost = budget
     shares_list = []
     result_profit = 0
-
     combination = {}
-
-    """
-        1. sort the dataset, done data_sorted
-        2. set result_profit = 0, done
-        3. for loop
-        4. create criteria set budget, done: cost = budget
-            5.1 first row of shares data
-            5.2 calculate the result_profit, if next profit is higher then result_profit update result_profit
-            5.3 check the budget, if budget == 0
-            5.4 if budget is < budget, check other shares in the dataset if fits to improve the profit
-    """
     index = 0
+
     while index < len(data_sorted) and cost > 0:
         a, b, c = data_sorted[index]
         if cost - b >= 0:
