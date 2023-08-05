@@ -1,4 +1,6 @@
 import csv
+import os
+import psutil
 
 from itertools import combinations
 from itertools import permutations
@@ -6,11 +8,11 @@ from time import time
 
 
 def load_data(name_of_file):
-    """ load the shares data from a csv file with 20 shares """
+    """load the shares data from a csv file with 4 or 20 shares"""
 
     data_shares = []
 
-    with open(f'data/{name_of_file}.csv', 'r') as file:
+    with open(f"data/{name_of_file}.csv", "r") as file:
         reader = csv.reader(file)
         for row in reader:
             data_shares.append(row)
@@ -23,7 +25,7 @@ def load_data(name_of_file):
 
 
 def generate_all_combinations(data_of_shares):
-    """ generates all possible combinations with `itertools.combinations` """
+    """generates all possible combinations with `itertools.combinations`"""
 
     all_possible_combinations = []
 
@@ -37,7 +39,7 @@ def generate_all_combinations(data_of_shares):
 
 
 def generate_all_combinations_permutations(data_of_shares):
-    """ generates all possible combinations with `itertools.permutations` """
+    """generates all possible combinations with `itertools.permutations`"""
 
     all_possible_combinations_permutations = []
 
@@ -48,7 +50,7 @@ def generate_all_combinations_permutations(data_of_shares):
 
 
 def combinations_budget(possible_combo, budget):
-    """ uses all possible combinations to check them and include the budget, budget = 500 """
+    """uses all possible combinations to check them and include the budget"""
 
     budget_combinations = []
 
@@ -67,7 +69,7 @@ def combinations_budget(possible_combo, budget):
 
 
 def calculate_profit(budget_combo):
-    """ calculate the profit of all combinations
+    """calculate the profit of all combinations
     (price * profit) + (price * profit)
     """
 
@@ -88,9 +90,9 @@ def calculate_profit(budget_combo):
 
 
 def check_duplicate_profit(profit_combo):
-    """ check for same value of the profit inside the itertools.permutations combinations
-     get rid of the duplicates
-     """
+    """check for same value of the profit inside the itertools.permutations combinations
+    get rid of the duplicates
+    """
 
     duplicate_free_profit_combo = []
     double_profit = []
@@ -112,7 +114,7 @@ def check_duplicate_profit(profit_combo):
 
 
 def bruteforce(budget_combo, profit_combo):
-    """ get the most profitable share combination """
+    """get the most profitable share combination"""
 
     highest_profit = 0.0
     highest_combo = {}
@@ -122,32 +124,37 @@ def bruteforce(budget_combo, profit_combo):
             highest_profit = profit
             index = i
 
-    highest_combo['combo'] = budget_combo[index]
-    highest_combo['total_profit'] = highest_profit
+    highest_combo["combo"] = budget_combo[index]
+    highest_combo["total_profit"] = highest_profit
 
     return highest_combo
 
 
 def print_results(combination, amount_of_shares, budget, start_time, name_of_file):
-    """ print the results of the bruteforce algorithm. """
+    """print the results of the bruteforce algorithm."""
 
     costs = 0
 
     print(" ---------------------------------------------------------------")
-    print(" ** RESULTS ** ", end='\n\n')
-    print(" The share-combination-result of the bruteforce algorythm: ", end='\n\n')
+    print(" ** RESULTS ** ", end="\n\n")
+    print(" The share-combination-result of the bruteforce algorythm: ", end="\n\n")
 
     print(f"  You have chosen: {name_of_file}.py")
     print(f"  The amount of shares are: {amount_of_shares}.")
-    print(f"  The buying budget is: {budget} €.", end='\n\n')
+    print(f"  The buying budget is: {budget} €.", end="\n\n")
 
-    for i, share in enumerate(combination['combo']):
+    for i, share in enumerate(combination["combo"]):
         costs += share[1]
-        print(f"   {i+1}. share-name: {share[0]}.")
-        print(f"    buying price: {share[1]} €.")
-        print(f"    profit after 2 years: {share[2]} %.", end='\n\n')
-
+        print(f"   {i+1}. name: {share[0]}, price: {share[1]}, profit: {share[2]}")
+    print()
     print(f"  The costs for the shares are: {round(costs, 2)} €.")
-    print(f"  The total profit of this share-combination is: "
-          f"{combination['total_profit']} %.", end='\n\n')
-    print(f"  The process needed {round((time() - start_time), 6)} seconds.", end='\n\n')
+    print(
+        f"  The total profit of this share-combination is: "
+        f"{combination['total_profit']} %.",
+    )
+    print(f"  The process needed {round((time() - start_time), 6)} seconds.")
+    print(
+        f"  RAM used by the program: "
+        f"{round((psutil.Process(os.getpid()).memory_info().rss / (1024 ** 2)), 3)} MB",
+        end="\n\n",
+    )
